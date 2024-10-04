@@ -8,13 +8,21 @@ export default function CreatePage() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    const form = event.currentTarget as HTMLFormElement; // 型キャスト
+    const formData = new FormData(form);
+
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+    };
+
     // フォームのデータを送信する
-    const response = await fetch("/api/lineMessage", {
+    const response = await fetch("/api/lineWebhook", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email }),
+      body: JSON.stringify(data),
     });
 
     if (response.ok) {
