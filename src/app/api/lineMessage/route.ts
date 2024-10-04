@@ -25,6 +25,9 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify(message),
     });
 
+    const responseData = await response.json();
+    console.log("Response from LINE API:", responseData);
+
     if (response.ok) {
       return NextResponse.json({ message: "メッセージを送信しました" });
     } else {
