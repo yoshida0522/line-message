@@ -38,6 +38,9 @@ export async function POST(req: NextRequest) {
       { status: response.ok ? 200 : response.status }
     );
 
+    // Content-Type に charset=utf-8 を指定
+    res.headers.set("Content-Type", "application/json; charset=utf-8");
+
     // X-Content-Type-Options ヘッダーを設定
     res.headers.set("X-Content-Type-Options", "nosniff");
 
@@ -48,6 +51,7 @@ export async function POST(req: NextRequest) {
       { message: "サーバーエラー" },
       { status: 500 }
     );
+    res.headers.set("Content-Type", "application/json; charset=utf-8");
     res.headers.set("X-Content-Type-Options", "nosniff");
     return res;
   }
