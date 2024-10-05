@@ -29,6 +29,12 @@ export async function POST(req: NextRequest) {
     const responseData = await response.json();
     console.log("Response from LINE API:", responseData);
 
+    if (!response.ok) {
+      throw new Error(
+        `LINE API error: ${responseData.message || responseData}`
+      );
+    }
+
     const res = NextResponse.json(
       {
         message: response.ok
