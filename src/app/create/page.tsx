@@ -24,6 +24,7 @@ export default function CreatePage() {
       },
       body: JSON.stringify(data),
     });
+    console.log("レスポンス確認", response);
 
     if (response.ok) {
       alert("LINEにメッセージを送信しました！");
