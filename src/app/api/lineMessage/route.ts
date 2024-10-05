@@ -29,16 +29,26 @@ export async function POST(req: NextRequest) {
     const responseData = await response.json();
     console.log("Response from LINE API:", responseData);
 
-    if (response.ok) {
-      return NextResponse.json({ message: "メッセージを送信しました" });
-    } else {
-      return NextResponse.json(
-        { message: "メッセージ送信に失敗しました" },
-        { status: response.status }
-      );
-    }
+    const res = NextResponse.json(
+      {
+        message: response.ok
+          ? "メッセージを送信しました"
+          : "メッセージ送信に失敗しました",
+      },
+      { status: response.ok ? 200 : response.status }
+    );
+
+    // X-Content-Type-Options ヘッダーを設定
+    res.headers.set("X-Content-Type-Options", "nosniff");
+
+    return res;
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ message: "サーバーエラー" }, { status: 500 });
+    const res = NextResponse.json(
+      { message: "サーバーエラー" },
+      { status: 500 }
+    );
+    res.headers.set("X-Content-Type-Options", "nosniff");
+    return res;
   }
 }
