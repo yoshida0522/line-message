@@ -35,30 +35,23 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const res = NextResponse.json(
-      {
-        message: response.ok
-          ? "メッセージを送信しました"
-          : "メッセージ送信に失敗しました",
-      },
-      { status: response.ok ? 200 : response.status }
+    return NextResponse.json(
+      { message: "メッセージを送信しました" },
+      { status: 200 }
     );
-
-    // Content-Type に charset=utf-8 を指定
-    res.headers.set("Content-Type", "application/json; charset=utf-8");
-
-    // X-Content-Type-Options ヘッダーを設定
-    res.headers.set("X-Content-Type-Options", "nosniff");
-
-    return res;
   } catch (error) {
-    console.error(error);
-    const res = NextResponse.json(
-      { message: "サーバーエラー" },
-      { status: 500 }
-    );
-    res.headers.set("Content-Type", "application/json; charset=utf-8");
-    res.headers.set("X-Content-Type-Options", "nosniff");
-    return res;
+    if (error instanceof Error) {
+      console.error("Error in lineMessage:", error.message); // エラーメッセージを記録
+      return NextResponse.json(
+        { message: "サーバーエラー", error: error.message }, // 詳細を含める
+        { status: 500 }
+      );
+    } else {
+      console.error("Unknown error in lineMessage:", error);
+      return NextResponse.json(
+        { message: "サーバーエラー", error: "Unknown error" }, // 不明なエラーを処理
+        { status: 500 }
+      );
+    }
   }
 }
