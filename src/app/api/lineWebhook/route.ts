@@ -1,17 +1,18 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { POST as sendLineMessage } from "../lineMessage/route";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
 
     // LINE Messaging API への送信などの処理を書く
     console.log("Received data:", data);
 
-    // 成功時のレスポンス
-    return NextResponse.json(
-      { message: "Data received successfully" },
-      { status: 200 }
-    );
+    // LINE API へのメッセージ送信
+    const lineResponse = await sendLineMessage(req); // 受け取ったデータをLINE APIへ送信
+
+    // LINE APIからのレスポンスを確認してレスポンスを返す
+    return lineResponse;
   } catch (error) {
     // エラーハンドリング
     console.error(error);

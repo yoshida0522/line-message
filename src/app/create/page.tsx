@@ -27,7 +27,7 @@ export default function CreatePage() {
     console.log("レスポンス確認", response);
 
     if (response.ok) {
-      alert("LINEにメッセージを送信しました！");
+      alert("LINEにメッセージを送信しました!");
     } else {
       alert("メッセージの送信に失敗しました。");
     }
