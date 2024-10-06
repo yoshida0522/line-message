@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { POST as sendLineMessage } from "./lineMessage/route";
+import { POST as sendLineMessage } from "./lineMessage";
 
 export async function POST(req: NextRequest) {
   try {
