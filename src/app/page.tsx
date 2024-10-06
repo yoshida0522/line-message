@@ -10,13 +10,13 @@ export default function HomePage() {
       <nav>
         <ul>
           <li>
-            <Link href="/create">
-              <a className={styles.navLink}>データ入力フォームへ</a>
+            <Link className={styles.navLink} href="/create">
+              データ入力フォームへ
             </Link>
           </li>
           <li>
-            <Link href="/about">
-              <a className={styles.navLink}>このアプリについて</a>
+            <Link className={styles.navLink} href="/about">
+              このアプリについて
             </Link>
           </li>
         </ul>
