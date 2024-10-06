@@ -6,9 +6,11 @@ export default function CreatePage() {
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (event: React.FormEvent) => {
+    // デフォルト動作防止
     event.preventDefault();
 
     const form = event.currentTarget as HTMLFormElement; // 型キャスト
+    // フォーム内の全ての入力値を収集
     const formData = new FormData(form);
 
     const data = {
@@ -39,6 +41,7 @@ export default function CreatePage() {
         名前:
         <input
           type="text"
+          name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -47,6 +50,7 @@ export default function CreatePage() {
         メールアドレス:
         <input
           type="email"
+          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />

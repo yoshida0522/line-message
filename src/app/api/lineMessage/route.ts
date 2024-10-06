@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// .envからアクセストークンを取得
 const CHANNEL_ACCESS_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN;
 
 export async function POST(req: NextRequest) {
   console.log(CHANNEL_ACCESS_TOKEN);
   try {
+    // リクエストから受け取ったデータを分割代入を使って取得
     const { name, email } = await req.json();
 
     const message = {
@@ -17,6 +19,7 @@ export async function POST(req: NextRequest) {
       ],
     };
 
+    // エンドポイントにPOSTリクエストを送信
     const response = await fetch("https://api.line.me/v2/bot/message/push", {
       method: "POST",
       headers: {
