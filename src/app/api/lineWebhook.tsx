@@ -10,7 +10,8 @@ export async function POST(req: NextRequest) {
     console.log("Received data:", data);
 
     // LINE Messaging APIにメッセージを送信し、そのレスポンスを取得する
-    const lineResponse = await sendLineMessage(req);
+    // const lineResponse = await sendLineMessage(req);
+    const lineResponse = await sendLineMessage(data);
 
     // LINE APIからのレスポンスを確認してレスポンスを返す
     return lineResponse;

@@ -1,13 +1,17 @@
-import { NextRequest, NextResponse } from "next/server";
+// import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 // .envからアクセストークンを取得
 const CHANNEL_ACCESS_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN;
 
-export async function POST(req: NextRequest) {
+// export async function POST(req: NextRequest) {
+export async function POST(data: { name: string; email: string }) {
   console.log(CHANNEL_ACCESS_TOKEN);
+
   try {
     // リクエストから受け取ったデータを分割代入を使って取得
-    const { name, email } = await req.json();
+    // const { name, email } = await req.json();
+    const { name, email } = data;
 
     const message = {
       to: "U6a934c65da47bd1a06d768e5e35da61f",

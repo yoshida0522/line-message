@@ -9,7 +9,7 @@ export default function CreatePage() {
     // デフォルト動作防止
     event.preventDefault();
 
-    const form = event.currentTarget as HTMLFormElement; // 型キャスト
+    const form = event.currentTarget as HTMLFormElement;
     // フォーム内の全ての入力値を収集
     const formData = new FormData(form);
 
